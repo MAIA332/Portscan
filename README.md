@@ -16,7 +16,7 @@ O foco deste repositório é oferecer um espaço para aprendizado e prática de 
 ## Como Usar
 
 1. Clone ou faça o download do repositório para sua máquina local.
-2. Abra o arquivo `socket_listener.py` em um ambiente Python.
+2. Abra o arquivo `_scn_.py` em um ambiente Python.
 3. Edite as configurações para escolher a porta que deseja escutar.
 4. Execute o script e observe as informações de conexão.
 5. Explore o código-fonte para entender como a biblioteca `socket` é aplicada.
