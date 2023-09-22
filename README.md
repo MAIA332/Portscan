@@ -21,6 +21,36 @@ O foco deste repositório é oferecer um espaço para aprendizado e prática de 
 4. Execute o script e observe as informações de conexão.
 5. Explore o código-fonte para entender como a biblioteca `socket` é aplicada.
 
+### Exemplo de código:
+
+```
+from Portscan._scn_ import scan
+
+port_mapping ={
+    "MySQL":3306,
+    "HTTP":80
+}
+
+for i in port_mapping:  
+    a= scan()  
+    is_used = "ONLINE" if a.verify_one(a.s,"localhost",port_mapping[i]) == True else "OFFLINE"
+    PID = a.get_pid_using_port(port_mapping[i])
+    print(f"{i} port: {is_used} ; PID: {PID}")
+```
+
+**Output:**
+
+```
+MySQL port: OFFLINE ; PID: None
+HTTP port: OFFLINE ; PID: None
+```
+
+**Ou**
+```
+MySQL port: ONLINE ; PID: 23148
+HTTP port: ONLINE ; PID: 19132
+```
+
 ## Aviso Importante
 
 Este repositório é destinado apenas a fins educacionais. É fundamental utilizar o conhecimento adquirido de forma ética e responsável. Não é recomendado realizar testes em sistemas sem a devida autorização.
