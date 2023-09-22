@@ -19,36 +19,31 @@ class scan:
                 s.close()
                 break
 
-    def plug(self,s,ip,port): # Verifica se uma porta está em uso
+    def verify_one(self,s,ip,port): # Verifica se uma porta está em uso
         
         try:
             if s.connect((ip,port)):
                 print(f"socket pluged on {port}")
+                s.close()
+                return True
             else:
                 print(f"A porta {port} está em uso")
-
+                s.close()
+                return False
+            
         except Exception as e:
-            print(f"A porta {port} está em uso {e}")
+            print(f"A porta {port} está em uso, há uma aplicação rodando...")
+            s.close()
+            return False
 
-
-    def verify(self,s,ip,ports): # Verifica estado das portas de aplicação
+    def verify_many(self,s,ip,ports): # Verifica estado das portas de aplicação
         log ={
 
         }
             
         for i in ports:
-            s.settimeout(1.0)
-            res = s.connect_ex((ip,i))
-            print(res)
-
-            if res == 0:
-                log[i]=True
-
-            elif res == 10060  or res == 10051 or res == 111 or res == 10035:
-                log[i]="Fechada"
-
-            elif res == 10056:
-                log[i] = "Não autorizada"
+            a=self.verify_one(s,ip,i)
+            log[i] = a
 
         return log
 
